@@ -1,6 +1,9 @@
 package com.picpaysimplificado.domain.transaction;
 
+import com.picpaysimplificado.domain.user.User;
 import jakarta.persistence.*;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity(name = "transactions")
@@ -12,7 +15,30 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @Column(name = "amount")
+    private BigDecimal amount;
 
+    @ManyToOne
+    @JoinColumn(name = "sender_id")
+    private User sender;
+
+    @ManyToOne
+    @JoinColumn(name = "receiver_id")
+    private User receiver;
+
+    @Column(name = "timestamp")
+    private LocalDateTime timestamp;
+
+    public Transaction() {}
+
+    public Transaction(UUID id, BigDecimal amount,
+                       User sender, User receiver, LocalDateTime timestamp) {
+        this.id = id;
+        this.amount = amount;
+        this.sender = sender;
+        this.receiver = receiver;
+        this.timestamp = timestamp;
+    }
 
     @Override
     public boolean equals(Object object) {
