@@ -1,14 +1,12 @@
 package com.picpaysimplificado.domain.user;
 
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
 import java.math.BigDecimal;
 import java.util.UUID;
 
 @Entity(name = "users")
 @Table(name = "user",
         schema = "public")
-@EqualsAndHashCode(of = "id")
 public class User {
 
     @Id
@@ -96,5 +94,17 @@ public class User {
     }
     public void setType(UserType type) {
         this.type = type;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof User other)) {
+            return false;
+        }
+        return this.id.equals(other.id);
+    }
+    @Override
+    public int hashCode() {
+        return this.id.hashCode();
     }
 }
