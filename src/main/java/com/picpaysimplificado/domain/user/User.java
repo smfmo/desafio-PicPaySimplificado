@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 @Entity(name = "users")
-@Table(name = "user",
+@Table(name = "users",
         schema = "public")
 public class User {
 
@@ -21,7 +21,7 @@ public class User {
 
     @Column(name = "document",
             unique = true)
-    private String Document;
+    private String document;
 
     @Column(name = "email",
             unique = true)
@@ -43,7 +43,7 @@ public class User {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.Document = document;
+        this.document = document;
         this.email = email;
         this.password = password;
         this.balance = balance;
@@ -69,10 +69,10 @@ public class User {
         this.lastName = lastName;
     }
     public String getDocument() {
-        return Document;
+        return document;
     }
     public void setDocument(String document) {
-        Document = document;
+        this.document = document;
     }
     public String getEmail() {
         return email;
@@ -88,6 +88,9 @@ public class User {
     }
     public BigDecimal getBalance() {
         return balance;
+    }
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
     }
     public UserType getType() {
         return type;
