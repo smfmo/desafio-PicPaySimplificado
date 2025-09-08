@@ -1,5 +1,6 @@
 package com.picpaysimplificado.domain.user;
 
+import com.picpaysimplificado.domain.dto.UserRequest;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -49,6 +50,14 @@ public class User {
         this.balance = balance;
         this.type = type;
     }
+
+    public User(UserRequest userRequest) {
+        this.firstName = userRequest.firstName();
+        this.lastName = userRequest.lastName();
+        this.document = userRequest.document();
+        this.email = userRequest.email();
+        this.password = userRequest.password();
+    } // construtor que recebe o DTO de user
 
     public UUID getId() {
         return id;
